@@ -6,10 +6,10 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 admin = User.create(
-  name: 'Admin User', # Set the name of the admin user
-  email: 'admin@stockpulse.com', # Set the email address
-  password: 'password123', # Set a password
-  password_confirmation: 'password123', # Confirm the password
-  balance: 10000, # Set the initial balance (if needed)
-  role: 'admin' # Set the role to 'admin'
+  name: 'Admin User', 
+  email: 'admin@stockpulse.com',
+  password: 'password123', 
+  password_confirmation: 'password123',
+  balance: 10000, 
+  role: 'admin' 
 )
