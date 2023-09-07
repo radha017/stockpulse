@@ -93,12 +93,12 @@ Rails.application.configure do
 
 
   config.action_mailer.delivery_method = :smtp
-  host = 'https://stockpulse.onrender.com/' 
+  host = 'https://stockpulse-op9s.onrender.com/' 
   config.action_mailer.default_url_options = { host: host }
 
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
-    :domain               => 'https://stockpulse.onrender.com/',
+    :domain               => 'https://stockpulse-op9s.onrender.com/',
     :port                 => 587,
     :user_name            => ENV['GMAIL_USERNAME'],
     :password             => ENV['GMAIL_PASSWORD'],
