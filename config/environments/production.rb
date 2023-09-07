@@ -89,7 +89,7 @@ Rails.application.configure do
   end
 
   config.action_mailer.delivery_method = :smtp
-  host = 'https://stockpulse.onrender.com/' 
+  host = 'https://stockpulse-op9s.onrender.com' 
   config.action_mailer.default_url_options = { host: host }
 
   config.action_mailer.smtp_settings = {
