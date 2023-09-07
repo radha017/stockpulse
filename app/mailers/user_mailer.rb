@@ -1,5 +1,5 @@
 class UserMailer < ApplicationMailer
-  default from: "radhasantos59@gmail.com"
+  default from: "notification@stockpulse.com"
 
   def pending_email(user)
     @user = user
