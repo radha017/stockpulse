@@ -1,0 +1,11 @@
+<!-- app/views/admin/_edit.html.erb -->
+
+<%= form_with(model: @user, url: update_role_admin_path(@user), method: :patch, remote: true) do |form| %>
+  <p> <%= form.label :name %><br />
+  <%= form.text_field :name, autofocus: true, autocomplete: "name" %> </p>
+  <p> <%= form.label :email %><br />
+  <%= form.text_field :email, autofocus: true, autocomplete: "email" %> </p>
+  <%= form.label :role %>
+  <%= form.select :role, User.roles.keys.map { |role| [role.humanize, role] } %>
+  <%= form.submit "Update Role" %>
+<% end %>

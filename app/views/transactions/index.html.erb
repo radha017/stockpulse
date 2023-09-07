@@ -1,0 +1,47 @@
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+    <div class=" m-3 p-3 rounded1">
+      <h2><%= @stock.symbol %></h2>
+      <%= line_chart @chart[:data], xtitle: 'Date', ytitle: 'Price', width: "700px", height: "300px", min: @chart[:data].min_by { |data| data[1] }[1] - 5 , max: @chart[:data].max_by { |data| data[1] }[1] + 15, curve: false %>
+      <h2>Today's Price: <%= @price %></h2>
+    </div>
+    </div>
+  </div>
+  <% if user_signed_in? && current_user.is_approved? %>
+  <div class="row justify-content-center">
+    <div class="col-md-4">
+      <div class="border p-3">
+        <%= form_with(url: display_path(@stock.symbol), method: :get) do |f| %>
+          <div class="form-group">
+            <%= f.label :quantity, 'Quantity' %>
+            <div class="input-group">
+              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to buy" %>
+              <div class="input-group-append">
+                <%= f.submit 'Buy', class: 'btn btn-success' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="border p-3">
+        <%= form_with(url: displays_path(@stock.symbol), method: :get) do |f| %>
+          <div class="form-group">
+            <%= f.label :quantity, 'Quantity' %>
+            <div class="input-group">
+              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to Sell" %>
+              <div class="input-group-append">
+                <%= f.submit 'Sell', class: 'btn btn-success' %>
+              </div>
+            </div>
+          </div>
+        <% end %>
+
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

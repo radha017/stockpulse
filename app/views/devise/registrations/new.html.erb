@@ -1,0 +1,46 @@
+<div class="main-cont ">
+  <div class="signup-cont">
+    <div class="center-cont">
+        <h2 class="text-center text-primary" >Sign up</h2>
+
+
+        <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+          <%= render "devise/shared/error_messages", resource: resource, required: true %>
+
+          <div class="field mb-3 pt-3">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control", placeholder: "Enter your name", required: true %>
+          </div>
+
+          <div class="field mb-3">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control", placeholder: "Enter your email", required: true %>
+          </div>
+
+          <div class="field mb-3">
+            <% if @minimum_password_length %>
+            <em>(<%= @minimum_password_length %> characters minimum)</em>
+            <% end %><br />
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control", placeholder: "Enter password", required: true %>
+          </div>
+
+          <div class="field mb-3">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control", placeholder: "Confirm password", required: true %>
+          </div>
+
+         <%= render "devise/shared/links" %>
+
+          <div class="actions text-center">
+            <%= f.submit "Sign up", class: "btn btn-outline-primary" %>
+          </div>
+        <% end %>
+
+        
+    </div>
+  </div>
+
+  <div>
+      <%=render "layouts/side" %>
+  </div>
+
+</div>
+
+

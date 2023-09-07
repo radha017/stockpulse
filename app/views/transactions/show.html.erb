@@ -1,0 +1,9 @@
+<div class="container">
+  <h2>Confirm Purchase</h2>
+  <p>Stock Symbol: <%= @stock.symbol %></p>
+  <p>Price: <%= @price %></p>
+  <p>Quantity: <%= @quantity %></p>
+  <p>Total Amount: <%= @total_amount %></p>
+
+  <%= link_to "Confirm Purchase", buy_path(@stock.symbol, quantity: @quantity), method: :post, class: "btn btn-success" %>
+</div>

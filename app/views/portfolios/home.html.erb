@@ -1,0 +1,25 @@
+<div class="container-fluid d-flex justify-content-center align-items-center">
+  <div class="d-flex justify-content-center p-5">
+    <div class="p-5">
+      <h1 class="display-3 mb-4"><strong> Welcome to StockPulse </strong></h1>
+      <h4> Your Gateway to Smarter Stock Trading </h4>
+      <p> Are you ready to elevate your stock trading experience to the next level? Look no further. <br> StockPulse is here to empower you with the tools and insights you need to make informed <br> investment decisions, all in one sleek and user-friendly platform. </p>
+
+      <% if user_signed_in? %>
+        <%= link_to "Admin Dashboard", dashboard_path, class: "btn btn-outline-primary" if current_user.admin? %>
+        <%= link_to "Go to my Portfolio", portfolio_path, class: "btn btn-outline-primary" if current_user.trader? && current_user.is_approved? %>
+       <% if !current_user.is_approved && current_user.trader? %>
+        <div class="alert alert-warning mt-3">
+            <p> <strong> Your application is waiting for admin approval. </strong></p>
+        </div>
+        <% end %>
+
+      <% else %>
+        <%= link_to "Register!", new_user_registration_path, class: "btn btn-outline-primary" %>
+      <% end %>
+    </div>
+    <div>
+      <%= image_tag("icon1.jpg") %>
+    </div>
+  </div>
+</div>

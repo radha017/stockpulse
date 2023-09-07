@@ -1,0 +1,18 @@
+
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+        <% @charts.each do |chart| %>
+        <div class=" m-3 p-3 rounded1">
+          <%= link_to home_path(symbol: chart[:symbol]) do %>
+        
+            <h2 class= "text-center"><%= chart[:symbol] %></h2>
+            <%= line_chart chart[:data], xtitle: 'Date', ytitle: 'Price', width: "700px", height: "300px", min: chart[:data].min_by { |data| data[1] }[1] - 5 , max: chart[:data].max_by { |data| data[1] }[1] + 15, curve: false %>
+    
+          <% end %>
+          </div>
+        <% end %>
+      
+    </div>
+  </div>
+</div>

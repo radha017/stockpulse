@@ -1,0 +1,39 @@
+<div class="container">
+  <% if !current_user.is_approved %>
+  <div class="alert alert-warning mt-3">
+    <p><strong>Your application is waiting for admin approval.</strong></p>
+  </div>
+  <% end %>
+
+  <% if current_user.is_approved? && current_user.trader? %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <h2>Transaction History</h2>
+      <div class="table-responsive-sm">
+        <table class="table table-sm">
+          <thead>
+            <tr>
+              <th>Stock Symbol</th>
+              <th>Type</th>
+              <th>Amount</th>
+              <th>Quantity</th>
+              <th class="date-column">Date</th> <!-- Assign a class to the Date column -->
+            </tr>
+          </thead>
+          <tbody>
+            <% @transactions.each do |transaction| %>
+            <tr>
+              <td><%= transaction.stock.symbol %></td>
+              <td><%= transaction.transaction_type %></td>
+              <td><%= transaction.price.to_f %></td>
+              <td><%= transaction.quantity %></td>
+              <td class="date-column"><%= transaction.timestamp %></td> <!-- Assign the same class to Date column -->
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
