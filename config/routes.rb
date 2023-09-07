@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  devise_for :users, controller: {
-    registration: 'users/registrations'
+  devise_for :users, controllers: {
+    registrations: 'users/registrations'
   }
   resources :transactions, only: [:index, :show, :display, :buy]
   resources :admin do
