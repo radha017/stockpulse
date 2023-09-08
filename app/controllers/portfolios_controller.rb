@@ -23,7 +23,7 @@ class PortfoliosController < ApplicationController
     @owned_stocks.each do |stock|
         price = stock.data.last['o']
         @owned_quantities[stock] = @user.transactions.where(stock: stock, transaction_type: 'buy').sum(:quantity)
-        @total = @owned_quantities[stock] * price
+      
     end
     
   end
