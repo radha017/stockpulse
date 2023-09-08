@@ -5,6 +5,7 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
+puts "Seeding started..."
 admin = User.create(
   name: 'Admin User', 
   email: 'admin@stockpulse.com',
@@ -13,3 +14,4 @@ admin = User.create(
   balance: 10000, 
   role: 'admin' 
 )
+puts "Seeding completed."

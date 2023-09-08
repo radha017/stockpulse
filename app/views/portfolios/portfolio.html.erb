@@ -1,11 +1,13 @@
+
 <div class="container">
-  <div class="row justify-content-center">
-    <div class="col-md-8">
-    <% if !current_user.is_approved %>
+<% if !current_user.is_approved %>
         <div class="alert alert-warning mt-3">
             <p> <strong> Your application is waiting for admin approval. </strong></p>
         </div>
         <% end %>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+    
     <% if current_user.is_approved?  %>    
       <h1 class="text-center">Owned Stocks</h1>
       <% if @owned_stocks.any? %>

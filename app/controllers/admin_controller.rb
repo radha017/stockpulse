@@ -14,31 +14,23 @@ class AdminController < ApplicationController
   end
   
 
-  def edit_role
-    @user = User.find(params[:id])
-    render partial: 'edit'
-  end
 
   def update_role
     @user = User.find(params[:id])
-    if @user.update(user_params)
+     @user.update(user_params)
       redirect_to dashboard_path, notice: "Role updated successfully."
-    else
-      render :edit_role
-    end
+    
   end
 
   def edit
     @user = User.find(params[:id])
-    respond_to do |format|
-      format.html { render partial: 'edit' }
-    end
+    
   end
 
   private
 
   def require_admin
-    unless current_user.admin?
+    unless current_user && current_user.admin?
       flash[:alert] = 'Access denied. You do not have permission to access the admin dashboard.'
       redirect_to root_path
       end

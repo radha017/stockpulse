@@ -1,11 +1,11 @@
 <div class="container">
-  <% if !current_user.is_approved %>
+  <% if !current_user.is_approved && current_user.trader?%>
   <div class="alert alert-warning mt-3">
     <p><strong>Your application is waiting for admin approval.</strong></p>
   </div>
   <% end %>
 
-  
+  <% if current_user.is_approved? || current_user.admin? %>
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h2>Transaction History</h2>
@@ -13,6 +13,7 @@
         <table class="table table-sm">
           <thead>
             <tr>
+            
             <% if current_user.admin?%>
             <th>User</th>
             <% end %>
@@ -52,5 +53,5 @@
       </div>
     </div>
   </div>
-  
+  <% end %>
 </div>

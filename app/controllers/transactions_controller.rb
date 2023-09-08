@@ -1,6 +1,5 @@
 class TransactionsController < ApplicationController
   def index
-    console
     @stock = Stock.find_by(symbol: params[:symbol])
     @chart = {
       symbol: @stock.symbol,
@@ -16,15 +15,6 @@ class TransactionsController < ApplicationController
   end
   
   
-
-  def show
-    symbol = params[:symbol]
-    @stock = Stock.find_by(symbol: symbol)
-    @price = @stock['data'].last['o']
-    @quantity = params[:quantity].to_i
-    @total_amount = @price * @quantity
-    balance = current_user.balance
-  end
 
   def buy
     symbol = params[:symbol]

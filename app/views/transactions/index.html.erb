@@ -26,7 +26,7 @@
           <div class="form-group">
             <p> <strong> BUY <%= @stock.symbol %> </strong> </p>
             <div class="input-group">
-              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to buy" %>
+              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to buy", required: true %>
               <div class="input-group-append">
                 <%= f.submit 'Buy', class: 'btn btn-success' %>
               </div>
@@ -42,7 +42,7 @@
         <%= form_with(url: displays_path(@stock.symbol), method: :get) do |f| %>
           <div class="form-group">
             <div class="input-group">
-              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to Sell" %>
+              <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to Sell", required: true %>
               <div class="input-group-append">
                 <%= f.submit 'Sell', class: 'btn btn-success' %>
               </div>

@@ -1,4 +1,4 @@
 class Stock < ApplicationRecord
-    validates :symbol, uniqueness: true
+    validates :symbol, presence: true, uniqueness: true
 
 end

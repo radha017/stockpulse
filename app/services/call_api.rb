@@ -1,4 +1,6 @@
 class CallApi
+  require 'faraday'
+  require 'json'
     def call 
       symbols = ["AAPL", "MSFT", "GOOGL", "AMZN", "TSLA", "META","JPM","V", "NVDA","PG", "MA","CRM","PFE","WMT"]
       stocks = []

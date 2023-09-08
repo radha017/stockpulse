@@ -69,7 +69,9 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
-  gem 'simplecov', require: false, group: :test
+  gem 'rails-controller-testing'
+  gem 'rspec-rails'
+  gem 'webmock'
 end
 
 gem "devise", "~> 4.9"
@@ -77,5 +79,5 @@ gem "devise", "~> 4.9"
 gem "faraday", "~> 2.7"
 
 gem "chartkick"
-
- gem 'rspec-rails'
+gem 'simplecov', require: false, group: :test
+ 

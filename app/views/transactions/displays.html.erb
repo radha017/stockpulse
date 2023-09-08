@@ -1,24 +1,27 @@
-
-<div class="container">
- <% if flash[:error].present? %>
+<div class="d-flexalign-items-center vh-100 pt-5">
+<div class="container col-4 border border-primary rounded p-4">
+  <% if flash[:error].present? %>
     <div class="alert alert-danger">
       <%= flash[:error] %>
     </div>
-      <% if flash[:success].present? %>
+  <% end %>
+  <% if flash[:success].present? %>
     <div class="alert alert-success">
       <%= flash[:success] %>
     </div>
   <% end %>
-  <% end %>
-  <h2>Confirm Transaction</h2>
-  <p>Stock Symbol: <%= @stock['symbol'] %></p>
-  <p>Price: <%= @price %></p>
-  <p>Quantity: <%= quantity %></p>
-  <p>Total Amount: <%= @total_amount %></p>
+  <h2 class="text-center mt-4">Confirm Transaction</h2>
+  <p> <strong> Stock Symbol:</strong> <%= @stock['symbol'] %></p>
+  <p><strong>Price: </strong><%= @price %></p>
+  <p><strong>Quantity:</strong> <%= quantity %></p>
+  <p><strong>Total Amount:</strong> <%= @total_amount %></p>
 
   <%= form_tag(sell_path(@stock.symbol), method: :post) do %>
     <%= hidden_field_tag :quantity, quantity %>
-    <%= submit_tag "Confirm Transaction", class: "btn btn-success" %>
+    <div class="d-flex justify-content-between">
+      <%= submit_tag "Confirm Transaction", class: "btn btn-success" %>
+      <%= link_to "Cancel", home_path, class: "btn btn-danger ml-2" %>
+    </div>
   <% end %>
-  <%= link_to "Cancel", home_path %>
+  </div>
 </div>
