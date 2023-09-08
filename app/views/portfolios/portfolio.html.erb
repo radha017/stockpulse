@@ -14,6 +14,7 @@
             <tr class="bg-secondary text-white"> 
               <th>Stock Symbol</th>
               <th>Quantity</th>
+              <th>Market Value</th>
             </tr>
           </thead>
           <tbody>
@@ -21,6 +22,7 @@
               <tr>
                 <td><%= stock.symbol %></td>
                 <td><%= @owned_quantities[stock] %></td>
+                <td> <strong> <%= @total %> </strong> </td>
               </tr>
             <% end %>
           </tbody>

@@ -1,5 +1,15 @@
 <div class="container">
   <div class="row justify-content-center mt-5">
+  <% if flash[:error].present? %>
+    <div class="alert alert-danger">
+      <%= flash[:error] %>
+    </div>
+  <% end %>
+   <% if flash[:success].present? %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+    </div>
+  <% end %>
     <div class="col-md-8 text-center">
     <div class=" m-3 p-3 rounded1">
       <h2><%= @stock.symbol %></h2>
@@ -8,13 +18,13 @@
     </div>
     </div>
   </div>
-  <% if user_signed_in? && current_user.is_approved? %>
+  <% if user_signed_in? && current_user.is_approved? && current_user.trader? %>
   <div class="row justify-content-center">
     <div class="col-md-4">
       <div class="border p-3">
         <%= form_with(url: display_path(@stock.symbol), method: :get) do |f| %>
           <div class="form-group">
-            <%= f.label :quantity, 'Quantity' %>
+            <p> <strong> BUY <%= @stock.symbol %> </strong> </p>
             <div class="input-group">
               <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to buy" %>
               <div class="input-group-append">
@@ -25,12 +35,12 @@
         <% end %>
       </div>
     </div>
-
+    <% if @owned_quantity > 0  %>
     <div class="col-md-4">
       <div class="border p-3">
+      <p> <strong> You have <%= @owned_quantity %> <%= @stock.symbol %> to sell</strong></p>
         <%= form_with(url: displays_path(@stock.symbol), method: :get) do |f| %>
           <div class="form-group">
-            <%= f.label :quantity, 'Quantity' %>
             <div class="input-group">
               <%= f.number_field :quantity, min: 1, class: 'form-control', placeholder: "Enter quantity to Sell" %>
               <div class="input-group-append">
@@ -38,9 +48,11 @@
               </div>
             </div>
           </div>
-        <% end %>
-
-        <% end %>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    <% end %>
       </div>
     </div>
   </div>

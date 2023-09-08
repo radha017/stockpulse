@@ -5,7 +5,7 @@
   </div>
   <% end %>
 
-  <% if current_user.is_approved? && current_user.trader? %>
+  
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h2>Transaction History</h2>
@@ -13,6 +13,9 @@
         <table class="table table-sm">
           <thead>
             <tr>
+            <% if current_user.admin?%>
+            <th>User</th>
+            <% end %>
               <th>Stock Symbol</th>
               <th>Type</th>
               <th>Amount</th>
@@ -21,6 +24,7 @@
             </tr>
           </thead>
           <tbody>
+          <% if current_user.is_approved? && current_user.trader? %>
             <% @transactions.each do |transaction| %>
             <tr>
               <td><%= transaction.stock.symbol %></td>
@@ -30,10 +34,23 @@
               <td class="date-column"><%= transaction.timestamp %></td> <!-- Assign the same class to Date column -->
             </tr>
             <% end %>
+            <% end %>
+            <% if current_user.admin?%>
+            <% @transac.each do |transaction| %>
+            <tr>
+              <td><%= transaction.user&.email %></td>
+              <td><%= transaction.stock.symbol %></td>
+              <td><%= transaction.transaction_type %></td>
+              <td><%= transaction.price.to_f %></td>
+              <td><%= transaction.quantity %></td>
+              <td class="date-column"><%= transaction.timestamp %></td> <!-- Assign the same class to Date column -->
+            </tr>
+            <% end %>
+            <% end %>
           </tbody>
         </table>
       </div>
     </div>
   </div>
-  <% end %>
+  
 </div>

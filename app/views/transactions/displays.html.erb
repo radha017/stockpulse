@@ -4,6 +4,11 @@
     <div class="alert alert-danger">
       <%= flash[:error] %>
     </div>
+      <% if flash[:success].present? %>
+    <div class="alert alert-success">
+      <%= flash[:success] %>
+    </div>
+  <% end %>
   <% end %>
   <h2>Confirm Transaction</h2>
   <p>Stock Symbol: <%= @stock['symbol'] %></p>

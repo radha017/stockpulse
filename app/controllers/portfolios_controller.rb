@@ -19,14 +19,21 @@ class PortfoliosController < ApplicationController
     @user = current_user
     @owned_stocks = @user.transactions.where(transaction_type: 'buy').map(&:stock).uniq
     @owned_quantities = {} 
+    
     @owned_stocks.each do |stock|
-      @owned_quantities[stock] = @user.transactions.where(stock: stock, transaction_type: 'buy').sum(:quantity)
+        price = stock.data.last['o']
+        @owned_quantities[stock] = @user.transactions.where(stock: stock, transaction_type: 'buy').sum(:quantity)
+        @total = @owned_quantities[stock] * price
     end
+    
   end
 
   def history
+    @transac = Transaction.all
     @transactions = Transaction.order(created_at: :desc).where(user_id: current_user.id)
   end
+
+  
 
   private
   def CallApi

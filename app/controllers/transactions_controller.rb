@@ -1,12 +1,21 @@
 class TransactionsController < ApplicationController
   def index
+    console
     @stock = Stock.find_by(symbol: params[:symbol])
     @chart = {
       symbol: @stock.symbol,
       data: @stock.data.map { |result| [Time.at(result['t'] / 1000), result['o']] }
-      } 
+    } 
     @price = @stock.data.last['o']
+    if user_signed_in?
+    bought = current_user.transactions.where(stock_id: @stock.id, transaction_type: 'buy').sum(:quantity)
+    sell = current_user.transactions.where(stock_id: @stock.id, transaction_type: 'sell').sum(:quantity)
+    @owned_quantity = (bought - sell)
+    end
+ 
   end
+  
+  
 
   def show
     symbol = params[:symbol]
@@ -56,9 +65,11 @@ class TransactionsController < ApplicationController
     stock = Stock.find_by(symbol: symbol)
     price = stock.data.last['o']
     total_amount = price * quantity
+    
+    bought = current_user.transactions.where(stock_id: stock.id, transaction_type: 'buy').sum(:quantity)
+    sell = current_user.transactions.where(stock_id: stock.id, transaction_type: 'sell').sum(:quantity)
+    owned_quantity = bought - sell
   
-  
-    owned_quantity = user.transactions.where(stock_id: stock.id, transaction_type: 'buy').sum(:quantity)
     if owned_quantity >= quantity
     
       @transaction = Transaction.new(
@@ -78,12 +89,12 @@ class TransactionsController < ApplicationController
       else
        
         flash[:error] = "An error occurred while processing your sale."
-        redirect_to display_path(symbol)
+        redirect_to home_path(symbol)
       end
     else
     
       flash[:error] = "Insufficient quantity to sell."
-      redirect_to display_path(symbol)
+      redirect_to home_path(symbol)
     end
   end
   
@@ -104,7 +115,15 @@ class TransactionsController < ApplicationController
     @quantity = params[:quantity].to_i
     @total_amount = @price * @quantity
 
+    bought = current_user.transactions.where(stock_id: @stock.id, transaction_type: 'buy').sum(:quantity)
+    sell = current_user.transactions.where(stock_id: @stock.id, transaction_type: 'sell').sum(:quantity)
+    owned_quantity = bought - sell
+    if owned_quantity < @quantity
+      flash[:error] = "Insufficient quantity to sell."
+      redirect_to home_path(symbol)
+    else
     render :displays, locals: { quantity: @quantity }
+    end
   end
 
 end
