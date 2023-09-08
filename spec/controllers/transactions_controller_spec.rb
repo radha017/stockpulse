@@ -96,13 +96,11 @@ RSpec.describe TransactionsController, type: :controller do
       expect(assigns(:total_amount)).to be_present
     end
     
-    # Add more test cases for this action as needed
   end
 
   describe 'POST #displays' do
   context 'when selling valid quantity' do
     it 'assigns the requested stock and quantity' do
-      # Create a buy transaction for the user
       buy_transaction = Transaction.create!(
         user: user,
         stock: stock,
@@ -123,7 +121,6 @@ RSpec.describe TransactionsController, type: :controller do
 
   context 'when selling an invalid quantity' do
     it 'redirects with an error message' do
-      # Create a buy transaction for the user
       buy_transaction = Transaction.create!(
         user: user,
         stock: stock,

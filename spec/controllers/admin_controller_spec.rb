@@ -1,6 +1,4 @@
 require 'rails_helper'
-# spec/controllers/admin_controller_spec.rb
-
 RSpec.describe AdminController, type: :controller do
   describe "GET #dashboard" do
     it "assigns @users, @pending_users, and @approved_users" do

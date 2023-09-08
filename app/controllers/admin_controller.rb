@@ -9,7 +9,7 @@ class AdminController < ApplicationController
   def approve
     user = User.find(params[:id])
     user.update(is_approved: true)
-    UserMailer.approved_email(user).deliver_now # Send the approval email
+    UserMailer.approved_email(user).deliver_now 
     redirect_to dashboard_path, notice: "#{user.email} has been approved."
   end
   

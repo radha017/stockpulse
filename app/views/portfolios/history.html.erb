@@ -21,7 +21,7 @@
               <th>Type</th>
               <th>Amount</th>
               <th>Quantity</th>
-              <th class="date-column">Date</th> <!-- Assign a class to the Date column -->
+              <th class="date-column">Date</th>
             </tr>
           </thead>
           <tbody>
@@ -32,7 +32,7 @@
               <td><%= transaction.transaction_type %></td>
               <td><%= transaction.price.to_f %></td>
               <td><%= transaction.quantity %></td>
-              <td class="date-column"><%= transaction.timestamp %></td> <!-- Assign the same class to Date column -->
+              <td class="date-column"><%= transaction.timestamp %></td> 
             </tr>
             <% end %>
             <% end %>
@@ -44,7 +44,7 @@
               <td><%= transaction.transaction_type %></td>
               <td><%= transaction.price.to_f %></td>
               <td><%= transaction.quantity %></td>
-              <td class="date-column"><%= transaction.timestamp %></td> <!-- Assign the same class to Date column -->
+              <td class="date-column"><%= transaction.timestamp %></td>
             </tr>
             <% end %>
             <% end %>
